@@ -1,5 +1,4 @@
-
-var URL = "http://127.0.0.1:9000";
+var URL = 'http://192.168.1.131:9000';
 
 exports.master_url = null;
 exports.url = null;
@@ -15,7 +14,7 @@ function init() {
 function setURL(url) {
     URL = url;
     init();
-};
+}
 
 function sendRequest(path, data, handler, extraUrl) {
     var xhr = cc.loader.getXMLHttpRequest();
@@ -36,21 +35,25 @@ function sendRequest(path, data, handler, extraUrl) {
     var sendpath = path;
     var sendtext = '?';
     for (var k in data) {
-        if (sendtext != "?") {
-            sendtext += "&";
+        if (sendtext != '?') {
+            sendtext += '&';
         }
-        sendtext += (k + "=" + data[k]);
+        sendtext += k + '=' + data[k];
     }
 
     //组装完整的URL
     var requestURL = extraUrl + sendpath + encodeURI(sendtext);
 
     //发送请求
-    console.log("RequestURL:" + requestURL);
-    xhr.open("GET", requestURL, true);
+    console.log('RequestURL:' + requestURL);
+    xhr.open('GET', requestURL, true);
 
     if (cc.sys.isNative) {
-        xhr.setRequestHeader("Accept-Encoding", "gzip,deflate", "text/html;charset=UTF-8");
+        xhr.setRequestHeader(
+            'Accept-Encoding',
+            'gzip,deflate',
+            'text/html;charset=UTF-8'
+        );
     }
 
     var timer = setTimeout(function() {
@@ -64,19 +67,19 @@ function sendRequest(path, data, handler, extraUrl) {
         sendRequest(path, data, handler, extraUrl);
     };
 
-    xhr.onreadystatechange = function () {
-        console.log("onreadystatechange");
+    xhr.onreadystatechange = function() {
+        console.log('onreadystatechange');
         clearTimeout(timer);
-        if (xhr.readyState === 4 && (xhr.status >= 200 && xhr.status < 300)) {
+        if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
             // console.log("http res(" + xhr.responseText.length + "):" + xhr.responseText);
-            cc.log("request from [" + xhr.responseURL + "] data [", ret, "]");
+            cc.log('request from [' + xhr.responseURL + '] data [', ret, ']');
             var respText = xhr.responseText;
 
             var ret = null;
             try {
                 ret = JSON.parse(respText);
             } catch (e) {
-                console.log("err:" + e);
+                console.log('err:' + e);
                 ret = {
                     errcode: -10001,
                     errmsg: e
@@ -88,9 +91,8 @@ function sendRequest(path, data, handler, extraUrl) {
             }
 
             handler = null;
-        }
-        else if (xhr.readyState === 4) {
-            if(xhr.hasRetried){
+        } else if (xhr.readyState === 4) {
+            if (xhr.hasRetried) {
                 return;
             }
 
@@ -98,16 +100,16 @@ function sendRequest(path, data, handler, extraUrl) {
             setTimeout(function() {
                 retryFunc();
             }, 5000);
-        }
-        else {
-            console.log('other readystate:' + xhr.readyState + ', status:' + xhr.status);
+        } else {
+            console.log(
+                'other readystate:' + xhr.readyState + ', status:' + xhr.status
+            );
         }
     };
 
     try {
         xhr.send();
-    }
-    catch (e) {
+    } catch (e) {
         //setTimeout(retryFunc, 200);
         retryFunc();
     }
