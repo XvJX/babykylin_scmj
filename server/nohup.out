@@ -1,0 +1,66 @@
+game server is listening on localhost:9003
+account server is listening on 9000
+dealer api is listening on localhost:12581
+client service is listening on port 9001
+room service is listening on localhost:9002
+game server is listening on 10000
+game server registered.
+	id:192.168.1.131:10000
+	addr:127.0.0.1
+	http port:9003
+	socket clientport:10000
+192.168.1.131:10000
+a8247e832824bb2ce81005c3a130a2b5
+invalid parameters
+SELECT name,sex,headimg FROM t_users WHERE userid=273007
+game server is listening on localhost:9003
+account server is listening on 9000
+dealer api is listening on localhost:12581
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE :::9000
+    at Object.exports._errnoException (util.js:1020:11)
+    at exports._exceptionWithHostPort (util.js:1043:20)
+    at Server._listen2 (net.js:1271:14)
+    at listen (net.js:1307:10)
+    at Server.listen (net.js:1403:5)
+    at EventEmitter.listen (/home/deploy/Documents/workspace/babykylin_scmj/server/node_modules/express/lib/application.js:617:24)
+    at Object.exports.start (/home/deploy/Documents/workspace/babykylin_scmj/server/account_server/account_server.js:20:6)
+    at Object.<anonymous> (/home/deploy/Documents/workspace/babykylin_scmj/server/account_server/app.js:11:4)
+    at Module._compile (module.js:577:32)
+    at Object.Module._extensions..js (module.js:586:10)
+client service is listening on port 9001
+room service is listening on localhost:9002
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE :::9001
+    at Object.exports._errnoException (util.js:1020:11)
+    at exports._exceptionWithHostPort (util.js:1043:20)
+    at Server._listen2 (net.js:1271:14)
+    at listen (net.js:1307:10)
+    at Server.listen (net.js:1403:5)
+    at EventEmitter.listen (/home/deploy/Documents/workspace/babykylin_scmj/server/node_modules/express/lib/application.js:617:24)
+    at Object.exports.start (/home/deploy/Documents/workspace/babykylin_scmj/server/hall_server/client_service.js:301:6)
+    at Object.<anonymous> (/home/deploy/Documents/workspace/babykylin_scmj/server/hall_server/app.js:10:16)
+    at Module._compile (module.js:577:32)
+    at Object.Module._extensions..js (module.js:586:10)
+game server is listening on 10000
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE :::10000
+    at Object.exports._errnoException (util.js:1020:11)
+    at exports._exceptionWithHostPort (util.js:1043:20)
+    at Server._listen2 (net.js:1271:14)
+    at listen (net.js:1307:10)
+    at Server.listen (net.js:1403:5)
+    at Object.exports.start (/home/deploy/Documents/workspace/babykylin_scmj/server/game_server/socket_service.js:30:13)
+    at Object.<anonymous> (/home/deploy/Documents/workspace/babykylin_scmj/server/game_server/app.js:15:16)
+    at Module._compile (module.js:577:32)
+    at Object.Module._extensions..js (module.js:586:10)
+    at Module.load (module.js:494:32)
